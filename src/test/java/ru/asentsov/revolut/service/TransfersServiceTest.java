@@ -93,7 +93,7 @@ public class TransfersServiceTest {
         assertEquals(CREATED.getStatusCode(), putResponse.getStatus());
         account1 = putResponse.readEntity(AccountView.class);
 
-        Response transferResult = target.path("accounts/" + account1.getAccountId())
+        Response transferResult = target.path("accounts/" + account1.getAccountId() + "/transfer")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(new TransferRequest(account2.getAccountId(), transferAmount), MediaType.APPLICATION_JSON));
 

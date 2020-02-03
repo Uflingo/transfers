@@ -97,7 +97,6 @@ public class AccountDaoImplTest {
         when(repositoryMock.getAccount(accountId2)).thenReturn(new AccountEntity(accountId2, new BigDecimal("0.00"), 0));
 
         Response response = accountsDao.createTransfer(accountId1, accountId2, BigDecimal.ONE);
-        System.out.println(response);
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
         assertEquals(AccountsDaoImpl.NOT_ENOUGH_MONEY, response.getEntity());
     }
