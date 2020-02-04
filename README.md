@@ -12,9 +12,20 @@
 9. hibernate - orm
 
 
-## Methods:
-1. GET /accounts - get all created accounts
-2. POST /accounts - creates new account
-3. GET /accounts/{account_id} - get account by id
-4. PUT /accounts/{account_id}, request: {"amount": 100} - adds money to account
-5. POST /accounts/{account_id}/transfers, request: {"toAccount":1, "amount":100} - make transfer between accounts
+## API:
+
+Base Uri: http://localhost:8080/api/
+
+| method | endpoint | request | response | description|
+|:------:|:---------|:--------|:---------|:-----------|
+| GET    |/accounts |         |[{"accountId": 1, "balance": 0.00},<br/> {"accountId": 2, "balance": 0.00}] |get all created accounts|
+| POST   |/accounts |         |{"accountId": 1, "balance": 0.00} | create new account|
+| GET    |/accounts/{account_id}||{"accountId": 1, "balance": 0.00}|get account by id|
+| PUT    |/accounts/{account_id}|{"amount": 100}|{"accountId": 1, "balance": 100.00}|add money to account|
+| POST   |/accounts/{account_id}/transfer|{"toAccount":1, "amount":100}|{"amount":100,"from":{"accountId":1,"balance":71.00},"to":{"accountId":2,"balance":152.00}}|make transfer between accounts|
+
+## Try it
+
+`mvn clean package ` will create fat jar
+
+`java -jar transfers-1.0-SNAPSHOT-jar-with-dependencies.jar` will start http server
